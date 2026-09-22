@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Trader Elite — Privacidade e Termos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#10141c;--ink-2:#161c27;--ink-3:#1e2634;--line:#2a3342;--text:#ece7dd;--read:#c3c9d3;
+    --muted:#8b95a6;--muted-2:#606b7d;--brass:#cfa155;--brass-soft:#cfa15522;--brass-line:#cfa15555}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--ink);color:var(--read);font-family:'Inter',system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:0 22px}
+  a{color:var(--brass);text-decoration:underline;text-underline-offset:2px}
+
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#10141cd8;backdrop-filter:blur(12px);z-index:10}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{display:flex;align-items:center;gap:9px;font-family:'Archivo';font-weight:800;font-size:15px;color:var(--text);text-decoration:none}
+  .brand .mark{width:14px;height:14px;border:1.5px solid var(--brass);transform:rotate(45deg);border-radius:2px}
+  .back{font-size:14px;color:var(--muted);text-decoration:none}.back:hover{color:var(--text)}
+
+  .tabs{display:flex;gap:6px;background:var(--ink-2);border:1px solid var(--line);border-radius:12px;padding:5px;margin:36px 0 8px}
+  .tabs button{flex:1;background:none;border:0;color:var(--muted);font-family:'Archivo';font-weight:700;font-size:14.5px;
+    padding:11px;border-radius:8px;cursor:pointer;transition:.15s}
+  .tabs button.on{background:var(--brass);color:#1a1206}
+
+  .doc{padding:20px 0 60px}
+  .tabc{display:none}.tabc.on{display:block;animation:fade .3s ease}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  @media(prefers-reduced-motion:reduce){.tabc.on{animation:none}}
+  h1{font-family:'Archivo';font-weight:800;letter-spacing:-.02em;font-size:clamp(26px,5.5vw,34px);color:var(--text);line-height:1.12;margin-top:14px}
+  .updated{color:var(--muted-2);font-size:13.5px;margin-top:11px}
+  h2{font-family:'Archivo';font-weight:700;letter-spacing:-.01em;font-size:19px;color:var(--text);margin:34px 0 12px}
+  h3{font-weight:600;font-size:16px;color:var(--text);margin:20px 0 8px}
+  p{margin:0 0 14px;font-size:15.5px}
+  ul{margin:0 0 14px;padding-left:2px;list-style:none}
+  li{position:relative;padding-left:20px;margin-bottom:9px;font-size:15.5px}
+  li::before{content:"";position:absolute;left:2px;top:11px;width:5px;height:5px;background:var(--brass);border-radius:50%}
+  .lead{font-size:16px;color:var(--text)}
+  strong{color:var(--text);font-weight:600}
+  .risk-box{border:1px solid var(--brass-line);background:var(--brass-soft);border-radius:14px;padding:20px 22px;margin:16px 0}
+  .risk-box p:last-child{margin-bottom:0}
+
+  footer{border-top:1px solid var(--line);padding:28px 0 46px}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;margin-bottom:18px}
+  .foot-links a{color:var(--muted);text-decoration:none;cursor:pointer}.foot-links a:hover{color:var(--text)}
+  .risk{font-size:11.5px;color:var(--muted-2);line-height:1.6}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/"><span class="mark"></span>Trader Elite</a>
+    <a class="back" href="/">← Voltar ao site</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="tabs">
+    <button id="t-priv" class="on" onclick="showTab('privacidade')">Privacidade</button>
+    <button id="t-term" onclick="showTab('termos')">Termos de Uso</button>
+  </div>
+</div>
+
+<div class="wrap doc">
+
+  <!-- ================= PRIVACIDADE ================= -->
+  <div class="tabc on" id="privacidade">
+    <h1>Política de Privacidade</h1>
+    <p class="updated">Última atualização: 15 de setembro de 2026</p>
+    <p class="lead" style="margin-top:24px">Esta Política explica como a Trader Elite coleta, usa, compartilha e protege os seus dados pessoais, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 — LGPD). Ao usar nosso site e serviços, você declara estar ciente das práticas aqui descritas.</p>
+
+    <h2>1. Quem é o controlador dos seus dados</h2>
+    <p>O controlador dos dados é <strong>[RAZÃO SOCIAL]</strong>, inscrita no CNPJ sob o nº <strong>[CNPJ]</strong>, com sede em <strong>[ENDEREÇO]</strong>. Para questões relativas a dados pessoais, o contato do nosso Encarregado (DPO) é <strong>[E-MAIL DO ENCARREGADO]</strong>.</p>
+
+    <h2>2. Quais dados coletamos</h2>
+    <h3>Dados que você nos fornece</h3>
+    <ul>
+      <li>Nome e número de WhatsApp, informados no quiz, na inscrição em eventos ou no cadastro na comunidade.</li>
+      <li>Respostas e preferências indicadas no quiz de perfil (nível de experiência, objetivos e dificuldades).</li>
+      <li>Dados de cadastro na área de membros, quando aplicável.</li>
+    </ul>
+    <h3>Dados coletados automaticamente</h3>
+    <ul>
+      <li>Informações de navegação e dispositivo: endereço IP, tipo de navegador, sistema operacional e páginas acessadas.</li>
+      <li>Identificadores de cookies e tecnologias similares.</li>
+      <li>Parâmetros de origem da campanha (UTMs) e dados de interação com anúncios.</li>
+    </ul>
+
+    <h2>3. Para que usamos os seus dados</h2>
+    <p>Tratamos seus dados para as seguintes finalidades e bases legais:</p>
+    <ul>
+      <li><strong>Contato e envio de convite para a comunidade</strong> — com base no seu consentimento.</li>
+      <li><strong>Inscrição e organização de eventos presenciais</strong> — para execução do que você solicitou e com base no consentimento.</li>
+      <li><strong>Envio de conteúdo educacional e comunicações</strong> — com base no consentimento, que pode ser revogado a qualquer momento.</li>
+      <li><strong>Mensuração de anúncios, análise de audiência e melhoria do site</strong> — com base no legítimo interesse e, quanto a cookies não essenciais, no seu consentimento.</li>
+    </ul>
+
+    <h2>4. Cookies e tecnologias de rastreamento</h2>
+    <p>Utilizamos cookies e ferramentas de mensuração para entender o desempenho das campanhas e melhorar sua experiência, incluindo o <strong>Meta Pixel</strong> e a <strong>API de Conversão da Meta</strong>, o <strong>Google Analytics 4</strong>, o <strong>Google Tag Manager</strong> e o <strong>Google Ads</strong>. Cookies essenciais são necessários ao funcionamento do site; os demais dependem do seu consentimento, gerenciável no banner de cookies ou nas configurações do navegador.</p>
+
+    <h2>5. Com quem compartilhamos</h2>
+    <p>Não vendemos seus dados. Podemos compartilhá-los com:</p>
+    <ul>
+      <li><strong>Provedores que operam por nossa conta</strong>: plataformas de anúncios e mensuração (Meta e Google), ferramenta de CRM, e serviços de hospedagem e banco de dados (incluindo Supabase).</li>
+      <li><strong>Corretora parceira</strong> [NOME DA CORRETORA PARCEIRA], quando você optar por se relacionar com ela, e apenas na medida necessária a essa relação.</li>
+      <li><strong>Autoridades públicas</strong>, quando exigido por lei ou ordem judicial.</li>
+    </ul>
+
+    <h2>6. Transferência internacional</h2>
+    <p>Alguns provedores (como Meta e Google) podem processar dados fora do Brasil. Nesses casos, adotamos as salvaguardas exigidas pela LGPD.</p>
+
+    <h2>7. Por quanto tempo guardamos</h2>
+    <p>Mantemos seus dados pelo tempo necessário às finalidades desta Política ou conforme exigido por lei. Encerradas as finalidades, os dados são eliminados ou anonimizados, salvo hipóteses legais de guarda.</p>
+
+    <h2>8. Segurança</h2>
+    <p>Adotamos medidas técnicas e organizacionais razoáveis para proteger seus dados contra acessos não autorizados, perda ou uso indevido.</p>
+
+    <h2>9. Seus direitos</h2>
+    <p>Nos termos da LGPD, você pode a qualquer momento:</p>
+    <ul>
+      <li>Confirmar a existência de tratamento e acessar seus dados.</li>
+      <li>Corrigir dados incompletos, inexatos ou desatualizados.</li>
+      <li>Solicitar anonimização, bloqueio ou eliminação de dados desnecessários.</li>
+      <li>Solicitar a portabilidade dos dados.</li>
+      <li>Revogar o consentimento e solicitar a eliminação dos dados tratados com base nele.</li>
+      <li>Se opor a tratamentos e obter informações sobre compartilhamentos.</li>
+    </ul>
+    <p>Para exercer seus direitos, escreva para <strong>[E-MAIL DO ENCARREGADO]</strong>.</p>
+
+    <h2>10. Menores de idade</h2>
+    <p>Nossos serviços não se destinam a menores de 18 anos. Não coletamos intencionalmente dados de menores; caso isso ocorra, os dados serão eliminados.</p>
+
+    <h2>11. Alterações nesta Política</h2>
+    <p>Podemos atualizar esta Política periodicamente. A versão vigente estará sempre disponível nesta página, com a data da última atualização.</p>
+
+    <h2>12. Contato</h2>
+    <p>Dúvidas sobre esta Política? Fale com a gente em <strong>[E-MAIL DE CONTATO]</strong> ou com o Encarregado em <strong>[E-MAIL DO ENCARREGADO]</strong>.</p>
+  </div>
+
+  <!-- ================= TERMOS ================= -->
+  <div class="tabc" id="termos">
+    <h1>Termos de Uso</h1>
+    <p class="updated">Última atualização: 15 de setembro de 2026</p>
+    <p class="lead" style="margin-top:24px">Estes Termos regem o uso do site, do conteúdo e dos serviços da Trader Elite. Ao acessar ou usar nossos serviços, você concorda com estes Termos. Se não concordar, não utilize a plataforma.</p>
+
+    <h2>1. Sobre a Trader Elite</h2>
+    <p>A Trader Elite é uma <strong>comunidade de finalidade educacional</strong> voltada ao estudo do mercado financeiro, oferecendo vídeos, materiais e eventos presenciais com traders experientes. Nosso propósito é ensinar — não gerir dinheiro nem indicar operações.</p>
+
+    <h2>2. Natureza educacional e aviso de risco</h2>
+    <div class="risk-box">
+      <p><strong>Todo o conteúdo da Trader Elite tem finalidade exclusivamente educacional e informativa.</strong> Nada do que é publicado constitui recomendação, consultoria, oferta ou solicitação de compra ou venda de qualquer ativo, nem promessa ou garantia de resultado financeiro.</p>
+      <p>Operações no mercado financeiro envolvem <strong>risco de perda, inclusive da totalidade do capital investido</strong>. Resultados passados não garantem resultados futuros. Qualquer decisão de investimento é de sua exclusiva responsabilidade. Avalie seu perfil e procure orientação de um profissional habilitado antes de investir.</p>
+    </div>
+
+    <h2>3. Cadastro e conta</h2>
+    <ul>
+      <li>Você deve fornecer informações verdadeiras e mantê-las atualizadas.</li>
+      <li>É responsável pela confidencialidade das suas credenciais e por toda atividade na sua conta.</li>
+      <li>O acesso é pessoal e intransferível.</li>
+    </ul>
+
+    <h2>4. Acesso ao conteúdo</h2>
+    <p>Parte do conteúdo é aberta a todos; a biblioteca completa é liberada mediante cadastro; e determinados conteúdos avançados podem exigir condições específicas de acesso, informadas no momento oportuno. Podemos alterar a disponibilidade e a organização do conteúdo a qualquer tempo.</p>
+
+    <h2>5. Eventos presenciais</h2>
+    <p>Eventos têm vagas e condições próprias, informadas na respectiva inscrição. A confirmação está sujeita à disponibilidade. Podemos alterar data, local ou programação por motivos operacionais, comunicando os inscritos pelos canais informados.</p>
+
+    <h2>6. Relação com a corretora parceira</h2>
+    <p>A Trader Elite <strong>não é uma corretora</strong> e não presta serviços de intermediação, custódia ou gestão de investimentos. Eventual relação com a corretora parceira [NOME DA CORRETORA PARCEIRA] ocorre entre você e a corretora, sob os termos e a responsabilidade dela. A Trader Elite não responde pelos produtos, serviços, decisões ou resultados relacionados à corretora.</p>
+
+    <h2>7. Propriedade intelectual</h2>
+    <p>Todo o conteúdo da plataforma — vídeos, textos, marca, identidade visual e materiais — pertence à Trader Elite ou a seus licenciadores e é protegido por lei. É vedado copiar, redistribuir, revender ou usar comercialmente sem autorização prévia e por escrito.</p>
+
+    <h2>8. Conduta do usuário</h2>
+    <p>Você concorda em não:</p>
+    <ul>
+      <li>Compartilhar suas credenciais ou o conteúdo restrito com terceiros.</li>
+      <li>Usar a plataforma para fins ilícitos ou que violem direitos de terceiros.</li>
+      <li>Tentar burlar mecanismos de segurança ou de controle de acesso.</li>
+    </ul>
+
+    <h2>9. Limitação de responsabilidade</h2>
+    <p>O conteúdo é fornecido "como está", para fins educacionais. Na máxima extensão permitida por lei, a Trader Elite não se responsabiliza por perdas ou decisões de investimento tomadas a partir do conteúdo, nem por indisponibilidades temporárias do serviço.</p>
+
+    <h2>10. Suspensão e encerramento</h2>
+    <p>Podemos suspender ou encerrar o acesso de usuários que violem estes Termos, sem prejuízo das medidas legais cabíveis.</p>
+
+    <h2>11. Alterações destes Termos</h2>
+    <p>Podemos atualizar estes Termos periodicamente. O uso continuado após alterações representa concordância com a nova versão.</p>
+
+    <h2>12. Lei aplicável e foro</h2>
+    <p>Estes Termos são regidos pelas leis brasileiras. Fica eleito o foro da comarca de <strong>[COMARCA/CIDADE]</strong> para dirimir controvérsias, com renúncia a qualquer outro.</p>
+
+    <h2>13. Contato</h2>
+    <p>Dúvidas sobre estes Termos? Fale com a gente em <strong>[E-MAIL DE CONTATO]</strong>.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="/">Início</a>
+      <a onclick="showTab('privacidade')">Política de Privacidade</a>
+      <a onclick="showTab('termos')">Termos de Uso</a>
+    </div>
+    <p class="risk">Conteúdo educacional. Não constitui recomendação de investimento. Operar no mercado financeiro envolve risco de perda.</p>
+  </div>
+</footer>
+
+<script>
+  function showTab(id){
+    document.querySelectorAll('.tabc').forEach(function(c){c.classList.toggle('on',c.id===id)});
+    document.getElementById('t-priv').classList.toggle('on',id==='privacidade');
+    document.getElementById('t-term').classList.toggle('on',id==='termos');
+    if(history.replaceState) history.replaceState(null,'','#'+id);
+    window.scrollTo(0,0);
+  }
+  var h=(location.hash||'').replace('#','');
+  if(h==='termos'||h==='privacidade') showTab(h);
+</script>
+</body>
+</html>
