@@ -239,6 +239,10 @@
   .thumb .play{position:relative;z-index:2}
   .vid[data-vid]{cursor:pointer;transition:border-color .15s,transform .1s}
   .vid[data-vid]:hover{border-color:var(--brass-line);transform:translateY(-2px)}
+
+  .thumb .lockrow{z-index:2}
+  .vid.locked{cursor:pointer;transition:border-color .15s,transform .1s}
+  .vid.locked:hover{border-color:var(--brass-line);transform:translateY(-2px)}
 </style>
 </head>
 <body>
@@ -313,6 +317,10 @@
           <div class="thumb t-a"><img class="vthumb" src="https://vz-3c9d37be-737.b-cdn.net/da34479d-31e6-4064-b00b-ecbfb13fc50e/thumbnail.jpg" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
           <div class="vid-meta"><div class="vid-title">Criptomoeda e Inteligência Artificial</div><div class="vid-tag">Aberto · assista grátis</div></div>
         </div>
+        <div class="vid locked" data-lock="1">
+          <div class="thumb t-a"><span class="lockrow"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 0 1 6 0v3H9z"/></svg>Avançado</span></div>
+          <div class="vid-meta"><div class="vid-title">Gestão de risco na prática</div><div class="vid-tag">Cadastre-se para assistir</div></div>
+        </div>
       </div>
     </div>
 
@@ -330,6 +338,10 @@
           <div class="thumb t-b"><img class="vthumb" src="https://vz-3c9d37be-737.b-cdn.net/e98495d1-bb7f-41dc-8c91-f63100b029fe/thumbnail.jpg" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
           <div class="vid-meta"><div class="vid-title">Qual o ativo misterioso da vez</div><div class="vid-tag">Aberto · assista grátis</div></div>
         </div>
+        <div class="vid locked" data-lock="1">
+          <div class="thumb t-b"><span class="lockrow"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 0 1 6 0v3H9z"/></svg>Avançado</span></div>
+          <div class="vid-meta"><div class="vid-title">Montagem de carteira passo a passo</div><div class="vid-tag">Cadastre-se para assistir</div></div>
+        </div>
       </div>
     </div>
 
@@ -346,6 +358,10 @@
         <div class="vid" data-vid="090345ba-d5de-439c-b96b-87fd6119b014">
           <div class="thumb t-c"><img class="vthumb" src="https://vz-3c9d37be-737.b-cdn.net/090345ba-d5de-439c-b96b-87fd6119b014/thumbnail.jpg" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
           <div class="vid-meta"><div class="vid-title">Calendário Econômico e Macroeconomia</div><div class="vid-tag">Aberto · assista grátis</div></div>
+        </div>
+        <div class="vid locked" data-lock="1">
+          <div class="thumb t-c"><span class="lockrow"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 0 1 6 0v3H9z"/></svg>Avançado</span></div>
+          <div class="vid-meta"><div class="vid-title">Operando notícias de alto impacto</div><div class="vid-tag">Cadastre-se para assistir</div></div>
         </div>
       </div>
     </div>
@@ -511,6 +527,7 @@
   }
   function closeVideo(){ document.getElementById("vmodal").hidden=true; document.getElementById("vplayer").innerHTML=""; document.body.style.overflow=""; }
   document.querySelectorAll("[data-vid]").forEach(function(b){ b.addEventListener("click",function(){ openVideo(b.dataset.vid); }); });
+  document.querySelectorAll(".vid.locked").forEach(function(c){ c.addEventListener("click",function(){ track("gate_click",{}); window.open("/membros","_blank","noopener"); }); });
   var _vx=document.getElementById("vmodal-x"); if(_vx)_vx.addEventListener("click",closeVideo);
   var _vb=document.getElementById("vmodal-bd"); if(_vb)_vb.addEventListener("click",closeVideo);
   document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeVideo(); });
