@@ -233,6 +233,12 @@
   .vmodal-x{position:absolute;top:-16px;right:-6px;z-index:2;width:38px;height:38px;border-radius:50%;background:var(--ink-2);border:1px solid var(--line);color:var(--text);font-size:22px;line-height:1;cursor:pointer}
   .vplayer{position:relative;padding-top:56.25%;background:#000;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
   .vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+  .thumb .vthumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0000,#0006)}
+  .thumb .play{position:relative;z-index:2}
+  .vid[data-vid]{cursor:pointer;transition:border-color .15s,transform .1s}
+  .vid[data-vid]:hover{border-color:var(--brass-line);transform:translateY(-2px)}
 </style>
 </head>
 <body>
@@ -290,7 +296,7 @@
     <div class="sec-head">
       <div class="kicker">Os traders</div>
       <h2>Cada trader, um perfil.</h2>
-      <p>O conteúdo é organizado por quem ensina. Alguns vídeos são abertos; o restante libera com o cadastro.</p>
+      <p>Um vídeo aberto de cada trader. A biblioteca completa fica na área de membros, com o cadastro gratuito.</p>
     </div>
 
     <!-- Trader 1 -->
@@ -303,17 +309,9 @@
         </div>
       </div>
       <div class="videos">
-        <div class="vid" data-open="1">
-          <div class="thumb t-a"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">08:12</span></div>
-          <div class="vid-meta"><div class="vid-title">Como ler o book de ofertas</div><div class="vid-tag">Aberto</div></div>
-        </div>
-        <div class="vid locked">
-          <div class="thumb t-a"><span class="lockrow"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 0 1 6 0v3H9z"/></svg>Cadastro</span><span class="dur">14:40</span></div>
-          <div class="vid-meta"><div class="vid-title">Montando seu primeiro setup de day trade</div><div class="vid-tag">Cadastre-se para assistir</div></div>
-        </div>
-        <div class="vid locked">
-          <div class="thumb t-a"><span class="lockrow"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 0 1 6 0v3H9z"/></svg>Cadastro</span><span class="dur">19:03</span></div>
-          <div class="vid-meta"><div class="vid-title">Gestão de risco na prática</div><div class="vid-tag">Cadastre-se para assistir</div></div>
+        <div class="vid" data-vid="da34479d-31e6-4064-b00b-ecbfb13fc50e">
+          <div class="thumb t-a"><img class="vthumb" src="https://vz-3c9d37be-737.b-cdn.net/da34479d-31e6-4064-b00b-ecbfb13fc50e/thumbnail.jpg" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+          <div class="vid-meta"><div class="vid-title">Criptomoeda e Inteligência Artificial</div><div class="vid-tag">Aberto · assista grátis</div></div>
         </div>
       </div>
     </div>
@@ -328,13 +326,9 @@
         </div>
       </div>
       <div class="videos">
-        <div class="vid" data-open="1">
-          <div class="thumb t-b"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">06:55</span></div>
-          <div class="vid-meta"><div class="vid-title">O que é swing trade, sem enrolação</div><div class="vid-tag">Aberto</div></div>
-        </div>
-        <div class="vid locked">
-          <div class="thumb t-b"><span class="lockrow"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 0 1 6 0v3H9z"/></svg>Cadastro</span><span class="dur">22:18</span></div>
-          <div class="vid-meta"><div class="vid-title">Rotina de um trader consistente</div><div class="vid-tag">Cadastre-se para assistir</div></div>
+        <div class="vid" data-vid="e98495d1-bb7f-41dc-8c91-f63100b029fe">
+          <div class="thumb t-b"><img class="vthumb" src="https://vz-3c9d37be-737.b-cdn.net/e98495d1-bb7f-41dc-8c91-f63100b029fe/thumbnail.jpg" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+          <div class="vid-meta"><div class="vid-title">Qual o ativo misterioso da vez</div><div class="vid-tag">Aberto · assista grátis</div></div>
         </div>
       </div>
     </div>
@@ -349,49 +343,14 @@
         </div>
       </div>
       <div class="videos">
-        <div class="vid" data-open="1">
-          <div class="thumb t-c"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">10:31</span></div>
-          <div class="vid-meta"><div class="vid-title">Introdução ao mercado de forex</div><div class="vid-tag">Aberto</div></div>
-        </div>
-        <div class="vid locked">
-          <div class="thumb t-c"><span class="lockrow"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 0 1 6 0v3H9z"/></svg>Cadastro</span><span class="dur">16:47</span></div>
-          <div class="vid-meta"><div class="vid-title">Lendo o cenário macro antes de operar</div><div class="vid-tag">Cadastre-se para assistir</div></div>
+        <div class="vid" data-vid="090345ba-d5de-439c-b96b-87fd6119b014">
+          <div class="thumb t-c"><img class="vthumb" src="https://vz-3c9d37be-737.b-cdn.net/090345ba-d5de-439c-b96b-87fd6119b014/thumbnail.jpg" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+          <div class="vid-meta"><div class="vid-title">Calendário Econômico e Macroeconomia</div><div class="vid-tag">Aberto · assista grátis</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-
-<!-- AULAS GRÁTIS -->
-<section id="aulas">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="kicker">Amostra gratuita</div>
-      <h2>Assista agora, de graça.</h2>
-      <p class="aulas-sub">Um gostinho do que rola dentro — conteúdo aberto direto dos nossos traders.</p>
-    </div>
-    <div class="aulas-grid">
-      <button class="aula" data-vid="da34479d-31e6-4064-b00b-ecbfb13fc50e" aria-label="Assistir: Criptomoeda e Inteligência Artificial">
-        <div class="aula-thumb"><img src="https://vz-3c9d37be-737.b-cdn.net/da34479d-31e6-4064-b00b-ecbfb13fc50e/thumbnail.jpg" alt="" loading="lazy"><span class="aula-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-        <div class="aula-meta"><div class="aula-title">Criptomoeda e Inteligência Artificial</div><div class="aula-by">com Caio</div></div>
-      </button>
-      <button class="aula" data-vid="e98495d1-bb7f-41dc-8c91-f63100b029fe" aria-label="Assistir: Qual o ativo misterioso da vez">
-        <div class="aula-thumb"><img src="https://vz-3c9d37be-737.b-cdn.net/e98495d1-bb7f-41dc-8c91-f63100b029fe/thumbnail.jpg" alt="" loading="lazy"><span class="aula-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-        <div class="aula-meta"><div class="aula-title">Qual o ativo misterioso da vez</div><div class="aula-by">com Lucas</div></div>
-      </button>
-      <button class="aula" data-vid="090345ba-d5de-439c-b96b-87fd6119b014" aria-label="Assistir: Calendário Econômico e Macroeconomia">
-        <div class="aula-thumb"><img src="https://vz-3c9d37be-737.b-cdn.net/090345ba-d5de-439c-b96b-87fd6119b014/thumbnail.jpg" alt="" loading="lazy"><span class="aula-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-        <div class="aula-meta"><div class="aula-title">Calendário Econômico e Macroeconomia</div><div class="aula-by">com Raúlzito</div></div>
-      </button>
-    </div>
-    <div class="aulas-cta">
-      <a class="btn" href="/membros" target="_blank" rel="noopener">Criar conta e ver tudo</a>
-      <span class="aulas-note">Grátis — leva 1 minuto.</span>
-    </div>
-  </div>
-</section>
-
 <!-- CONTEÚDO / faixa de acesso -->
 <section id="conteudo">
   <div class="wrap">
@@ -564,7 +523,7 @@
     document.getElementById("vmodal").hidden=false; document.body.style.overflow="hidden";
   }
   function closeVideo(){ document.getElementById("vmodal").hidden=true; document.getElementById("vplayer").innerHTML=""; document.body.style.overflow=""; }
-  document.querySelectorAll(".aula").forEach(function(b){ b.addEventListener("click",function(){ openVideo(b.dataset.vid); }); });
+  document.querySelectorAll("[data-vid]").forEach(function(b){ b.addEventListener("click",function(){ openVideo(b.dataset.vid); }); });
   var _vx=document.getElementById("vmodal-x"); if(_vx)_vx.addEventListener("click",closeVideo);
   var _vb=document.getElementById("vmodal-bd"); if(_vb)_vb.addEventListener("click",closeVideo);
   document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeVideo(); });
