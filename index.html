@@ -482,19 +482,6 @@
   window.dataLayer = window.dataLayer || [];
   function track(e,d){window.dataLayer.push({event:e,...d});console.log('[track]',{event:e,...d});}
 
-  // vídeos abertos → player (stub) · vídeos com cadastro → funil do quiz
-  document.querySelectorAll('.vid').forEach(v=>{
-    v.addEventListener('click',()=>{
-      if(v.dataset.open){
-        track('view_content',{state:'open'});
-        alert('Protótipo: aqui abre o player do vídeo aberto.');
-      }else{
-        track('gate_click',{state:'locked'});
-        window.open('/quiz','_blank','noopener');
-      }
-    });
-  });
-
   // faq accordion
   document.querySelectorAll('.qa button').forEach(b=>{
     b.addEventListener('click',()=>{
