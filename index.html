@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Trader Elite — Comunidade</title>
+<script>
+/* UTM — primeiro toque: guarda os utm_* da 1ª visita com campanha em localStorage "te_utm" */
+(function(){try{
+  if(localStorage.getItem('te_utm'))return;
+  var u={};new URLSearchParams(location.search).forEach(function(v,k){if(k.indexOf('utm_')===0&&v)u[k]=v;});
+  if(Object.keys(u).length)localStorage.setItem('te_utm',JSON.stringify(u));
+}catch(e){}})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">

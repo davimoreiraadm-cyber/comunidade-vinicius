@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Trader Elite — Área de membros</title>
+<script>
+/* UTM — primeiro toque: guarda os utm_* da 1ª visita com campanha em localStorage "te_utm" */
+(function(){try{
+  if(localStorage.getItem('te_utm'))return;
+  var u={};new URLSearchParams(location.search).forEach(function(v,k){if(k.indexOf('utm_')===0&&v)u[k]=v;});
+  if(Object.keys(u).length)localStorage.setItem('te_utm',JSON.stringify(u));
+}catch(e){}})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -353,6 +361,17 @@
     err.textContent=''; track('member_login',{});
   });
 
+  // UTM do primeiro toque (localStorage "te_utm"); se não houver, os utm_* da URL atual; senão {}
+  function getUtm(){
+    try{
+      var saved=JSON.parse(localStorage.getItem('te_utm')||'null');
+      if(saved&&typeof saved==='object'&&Object.keys(saved).length)return saved;
+    }catch(e){}
+    var u={};
+    try{new URLSearchParams(location.search).forEach(function(v,k){if(k.indexOf('utm_')===0&&v)u[k]=v;});}catch(e){}
+    return u;
+  }
+
   // criar conta (Supabase Auth)
   document.getElementById('btn-criar').addEventListener('click',async function(){
     var nome=document.getElementById('c-nome').value.trim();
@@ -365,7 +384,7 @@
     if(senha.length<6){err.textContent='Crie uma senha com ao menos 6 caracteres.';return;}
     if(!ok){err.textContent='Aceite os termos para criar a conta.';return;}
     err.textContent='Criando…';
-    var r=await sb.auth.signUp({email:mail,password:senha,options:{data:{full_name:nome}}});
+    var r=await sb.auth.signUp({email:mail,password:senha,options:{data:{full_name:nome,utm:getUtm()}}});
     if(r.error){err.textContent=traduzErro(r.error.message);return;}
     track('member_signup',{});
     if(!r.data.session){ err.textContent='Conta criada! Confira seu e-mail para confirmar antes de entrar.'; return; }

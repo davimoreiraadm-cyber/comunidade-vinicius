@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Trader Elite — Quiz</title>
+<script>
+/* UTM — primeiro toque: guarda os utm_* da 1ª visita com campanha em localStorage "te_utm" */
+(function(){try{
+  if(localStorage.getItem('te_utm'))return;
+  var u={};new URLSearchParams(location.search).forEach(function(v,k){if(k.indexOf('utm_')===0&&v)u[k]=v;});
+  if(Object.keys(u).length)localStorage.setItem('te_utm',JSON.stringify(u));
+}catch(e){}})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -346,7 +355,8 @@ function renderCapture(){
     const ok   = document.getElementById('lgpd').checked;
     const err  = document.getElementById('err');
     if(nome.length < 2){ err.textContent = 'Digite seu nome pra continuar.'; return; }
-    if(fone.replace(/\D/g,'').length < 10){ err.textContent = 'Confira seu número de WhatsApp.'; return; }
+    const phone = normalizePhone(fone);
+    if(!phone){ err.textContent = 'Confira seu número de WhatsApp.'; return; }
     if(!ok){ err.textContent = 'Marque o consentimento pra receber o convite.'; return; }
     err.textContent='';
 
@@ -360,6 +370,15 @@ function renderCapture(){
       event_id: eventId,           // <- chave de deduplicação Pixel <> CAPI
       profile: resolveProfile(state.answers).name,
       // em produção: nome/whatsapp hasheados (SHA-256) vão no user_data da CAPI
+    });
+
+    const answers = {};
+    QUESTIONS.forEach(q=>{ answers[q.key] = state.answers[q.key]; });
+    saveLead({
+      source: 'quiz',
+      name: nome,
+      phone,
+      payload: { answers, profile: resolveProfile(state.answers).name, consent: ok, event_id: eventId },
     });
 
     state.step++; render();
@@ -393,10 +412,49 @@ function renderResult(){
 
 /* ---- helpers ---- */
 function maskPhone(v){
-  v = v.replace(/\D/g,'').slice(0,11);
+  // com +55 / DDI ou mais de 11 dígitos, não formata (só limpa caracteres estranhos)
+  if(/^\s*\+/.test(v) || v.replace(/\D/g,'').length > 11) return v.replace(/[^\d+()\s-]/g,'');
+  v = v.replace(/\D/g,'');
   if(v.length<=2) return v.replace(/(\d{0,2})/,'($1');
   if(v.length<=7) return v.replace(/(\d{2})(\d{0,5})/,'($1) $2');
   return v.replace(/(\d{2})(\d{5})(\d{0,4})/,'($1) $2-$3');
+}
+
+/* aceita (11) 99999-8888, 11999998888, +55 11 99999-8888, 011 99999-8888,
+   0 21 11 99999-8888 (código de operadora) e fixo com 8 dígitos.
+   Retorna em E.164 (+5511999998888) ou null se inválido. */
+function normalizePhone(v){
+  let d = String(v).replace(/\D/g,'');
+  if(d.startsWith('00')) d = d.slice(2);                          // 0055...
+  if(d.startsWith('55') && (d.length===12 || d.length===13)) d = d.slice(2);
+  if(d.startsWith('0') && (d.length===13 || d.length===14)) d = d.slice(3); // 0 + operadora
+  else if(d.startsWith('0')) d = d.slice(1);                      // 0 + DDD
+  if(!/^[1-9]{2}/.test(d)) return null;                           // DDD 11–99, sem zero
+  if(d.length===11 && d[2]==='9') return '+55'+d;                 // celular
+  if(d.length===10 && /[2-9]/.test(d[2])) return '+55'+d;         // fixo / celular antigo
+  return null;
+}
+
+/* ---- lead no Supabase — silencioso: se falhar, o fluxo segue normal ---- */
+const SUPABASE_URL  = "https://kosjrzwerjbeteanjzsu.supabase.co";
+const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtvc2pyendlcmpiZXRlYW5qenN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk4Njg5NjMsImV4cCI6MjEwNTQ0NDk2M30.3JIHP3nyMShkGrb3mpkfWyPoxk251F1mE_NLeUx3nxw";
+// UTM do primeiro toque (localStorage "te_utm"); se não houver, os utm_* da URL atual; senão {}
+function utmParams(){
+  try{
+    const saved = JSON.parse(localStorage.getItem('te_utm') || 'null');
+    if(saved && typeof saved==='object' && Object.keys(saved).length) return saved;
+  }catch(e){}
+  const utm = {};
+  new URLSearchParams(location.search).forEach((val,key)=>{ if(key.startsWith('utm_') && val) utm[key] = val; });
+  return utm;
+}
+function saveLead(lead){
+  try{
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth:{ persistSession:false } });
+    sb.from('leads').insert({ ...lead, utm: utmParams() })
+      .then(({error})=>{ if(error) console.warn('[lead]', error.message); })
+      .catch(e=>console.warn('[lead]', e));
+  }catch(e){ console.warn('[lead]', e); }
 }
 
 backBtn.addEventListener('click',()=>{

@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Imersão Trader — Inscrição</title>
+<script>
+/* UTM — primeiro toque: guarda os utm_* da 1ª visita com campanha em localStorage "te_utm" */
+(function(){try{
+  if(localStorage.getItem('te_utm'))return;
+  var u={};new URLSearchParams(location.search).forEach(function(v,k){if(k.indexOf('utm_')===0&&v)u[k]=v;});
+  if(Object.keys(u).length)localStorage.setItem('te_utm',JSON.stringify(u));
+}catch(e){}})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -130,10 +139,45 @@
   window.dataLayer=window.dataLayer||[];
   function track(e,d){window.dataLayer.push({event:e,...d});console.log('[track]',{event:e,...d});}
   function newEventId(){return crypto.randomUUID?crypto.randomUUID():'te_'+Date.now();}
-  function maskPhone(v){v=v.replace(/\D/g,'').slice(0,11);
+  function maskPhone(v){
+    if(/^\s*\+/.test(v)||v.replace(/\D/g,'').length>11)return v.replace(/[^\d+()\s-]/g,'');
+    v=v.replace(/\D/g,'');
     if(v.length<=2)return v.replace(/(\d{0,2})/,'($1');
     if(v.length<=7)return v.replace(/(\d{2})(\d{0,5})/,'($1) $2');
     return v.replace(/(\d{2})(\d{5})(\d{0,4})/,'($1) $2-$3');}
+  // aceita (11) 99999-8888, +55 11 99999-8888, 011..., 0 21 11... e fixo; retorna E.164 ou null
+  function normalizePhone(v){
+    var d=String(v).replace(/\D/g,'');
+    if(d.indexOf('00')===0)d=d.slice(2);
+    if(d.indexOf('55')===0&&(d.length===12||d.length===13))d=d.slice(2);
+    if(d.charAt(0)==='0'&&(d.length===13||d.length===14))d=d.slice(3);
+    else if(d.charAt(0)==='0')d=d.slice(1);
+    if(!/^[1-9]{2}/.test(d))return null;
+    if(d.length===11&&d.charAt(2)==='9')return '+55'+d;
+    if(d.length===10&&/[2-9]/.test(d.charAt(2)))return '+55'+d;
+    return null;}
+
+  // lead no Supabase — silencioso: se falhar, a confirmação aparece mesmo assim
+  var SUPABASE_URL="https://kosjrzwerjbeteanjzsu.supabase.co";
+  var SUPABASE_ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtvc2pyendlcmpiZXRlYW5qenN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk4Njg5NjMsImV4cCI6MjEwNTQ0NDk2M30.3JIHP3nyMShkGrb3mpkfWyPoxk251F1mE_NLeUx3nxw";
+  // UTM do primeiro toque (localStorage "te_utm"); se não houver, os utm_* da URL atual; senão {}
+  function utmParams(){
+    try{
+      var saved=JSON.parse(localStorage.getItem('te_utm')||'null');
+      if(saved&&typeof saved==='object'&&Object.keys(saved).length)return saved;
+    }catch(e){}
+    var utm={};
+    new URLSearchParams(location.search).forEach(function(val,key){if(key.indexOf('utm_')===0&&val)utm[key]=val;});
+    return utm;}
+  function saveLead(lead){
+    try{
+      lead.utm=utmParams();
+      var sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON,{auth:{persistSession:false}});
+      sb.from('leads').insert(lead)
+        .then(function(r){if(r.error)console.warn('[lead]',r.error.message);})
+        .catch(function(e){console.warn('[lead]',e);});
+    }catch(e){console.warn('[lead]',e);}
+  }
 
   var zap=document.getElementById('zap');
   zap.addEventListener('input',function(){zap.value=maskPhone(zap.value);});
@@ -144,13 +188,16 @@
     var ok=document.getElementById('lgpd').checked;
     var err=document.getElementById('err');
     if(nome.length<2){err.textContent='Digite seu nome pra continuar.';return;}
-    if(fone.replace(/\D/g,'').length<10){err.textContent='Confira seu número de WhatsApp.';return;}
+    var phone=normalizePhone(fone);
+    if(!phone){err.textContent='Confira seu número de WhatsApp.';return;}
     if(!ok){err.textContent='Marque o consentimento pra confirmar a vaga.';return;}
     err.textContent='';
 
     var eventId=newEventId();
     // EVENT_REGISTER — dispara no Pixel E na CAPI (server) com o mesmo event_id
     track('event_register',{event_id:eventId,event_name:'Imersao Trader Goiania 2026-09-20'});
+    saveLead({source:'evento',name:nome,phone:phone,
+      payload:{event_name:'Imersao Trader Goiania 2026-09-20',consent:ok,event_id:eventId}});
 
     document.getElementById('ty-title').textContent='Vaga confirmada, '+nome.split(' ')[0]+'!';
     document.getElementById('inscricao').style.display='none';
