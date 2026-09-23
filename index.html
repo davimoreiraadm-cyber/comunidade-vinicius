@@ -249,6 +249,29 @@
   .ig-fab:hover{transform:scale(1.05)}
   .ig-fab svg{width:28px;height:28px;fill:#fff}
   @media(max-width:420px){.ig-fab{right:82px;bottom:18px}}
+
+  /* ---------- tiers de acesso ---------- */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px;align-items:stretch}
+  .tier{position:relative;border:1px solid var(--line);border-radius:16px;padding:24px 22px;background:var(--ink-2);display:flex;flex-direction:column;transition:transform .15s,border-color .15s,box-shadow .15s}
+  .tier-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .tier-ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;border:1px solid var(--line);flex:none}
+  .tier-ic svg{width:18px;height:18px;fill:var(--muted)}
+  .tier-lbl{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-2);font-weight:600}
+  .tier h3{font-size:19px;font-weight:800;font-family:'Archivo';margin-bottom:8px}
+  .tier p{color:var(--muted);font-size:14.5px;line-height:1.5;flex:1}
+  .tier-membros{border-color:var(--brass);background:linear-gradient(180deg,#3a0a0e,var(--ink-2));box-shadow:0 12px 40px #ff001c22}
+  .tier-membros .tier-ic{border-color:var(--brass-line);background:#ff001c1a}
+  .tier-membros .tier-ic svg{fill:var(--brass)}
+  .tier-membros .tier-lbl{color:var(--brass)}
+  .tier-badge{position:absolute;top:-11px;left:22px;background:var(--brass);color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 12px;border-radius:99px;box-shadow:0 4px 12px #ff001c55}
+  .tier-cta{margin-top:16px;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;background:var(--brass);color:#fff;font-weight:700;font-size:14px;padding:10px 18px;border-radius:10px;transition:filter .12s}
+  .tier-cta:hover{filter:brightness(1.1)}
+  .tier-adv{border-color:#c9973f66;background:linear-gradient(180deg,#241a08,var(--ink-2))}
+  .tier-adv .tier-ic{border-color:#c9973f66;background:#c9973f14}
+  .tier-adv .tier-ic svg{fill:#e0b24d}
+  .tier-adv .tier-lbl{color:#e0b24d}
+  @media(min-width:761px){.tier-membros{transform:translateY(-8px)}}
+  @media(max-width:760px){.tiers{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -380,18 +403,23 @@
       <div class="kicker">Como o acesso funciona</div>
       <h2>Do aberto ao avançado.</h2>
     </div>
-    <div class="quotes" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
-      <div style="border:1px solid var(--line);border-radius:var(--r);padding:22px">
-        <h3 style="font-size:17px;font-weight:700;margin-bottom:8px">Aberto</h3>
-        <p style="color:var(--muted);font-size:14.5px">Vídeos de introdução, livres pra qualquer um assistir e sentir o nível do conteúdo.</p>
+    <div class="tiers">
+      <div class="tier tier-open">
+        <div class="tier-head"><span class="tier-ic"><svg viewBox="0 0 24 24"><path d="M12 5C5 5 2 12 2 12s3 7 10 7 10-7 10-7-3-7-10-7zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-2.2a2.3 2.3 0 1 0 0-4.6 2.3 2.3 0 0 0 0 4.6z"/></svg></span><span class="tier-lbl">Grátis pra todos</span></div>
+        <h3>Aberto</h3>
+        <p>Vídeos de introdução, livres pra qualquer um assistir e sentir o nível do conteúdo.</p>
       </div>
-      <div style="border:1px solid var(--brass-line);border-radius:var(--r);padding:22px;background:var(--brass-soft)">
-        <h3 style="font-size:17px;font-weight:700;margin-bottom:8px">Membros</h3>
-        <p style="color:var(--muted);font-size:14.5px">A biblioteca completa, liberada com o cadastro gratuito na comunidade.</p>
+      <div class="tier tier-membros">
+        <span class="tier-badge">Comece aqui</span>
+        <div class="tier-head"><span class="tier-ic"><svg viewBox="0 0 24 24"><path d="M12 12a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4zM4 20c0-3.5 3.6-6 8-6s8 2.5 8 6v.5H4V20z"/></svg></span><span class="tier-lbl">Cadastro gratuito</span></div>
+        <h3>Membros</h3>
+        <p>A biblioteca completa, liberada com o cadastro gratuito na comunidade.</p>
+        <a class="tier-cta" href="/membros" target="_blank" rel="noopener">Criar conta grátis →</a>
       </div>
-      <div style="border:1px solid var(--line);border-radius:var(--r);padding:22px">
-        <h3 style="font-size:17px;font-weight:700;margin-bottom:8px">Avançado</h3>
-        <p style="color:var(--muted);font-size:14.5px">Conteúdo aprofundado, liberado para membros ativos na corretora parceira.</p>
+      <div class="tier tier-adv">
+        <div class="tier-head"><span class="tier-ic"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 0 1 6 0v3H9z"/></svg></span><span class="tier-lbl">Exclusivo</span></div>
+        <h3>Avançado</h3>
+        <p>Conteúdo aprofundado, liberado para membros ativos na corretora parceira.</p>
       </div>
     </div>
   </div>
