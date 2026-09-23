@@ -243,6 +243,12 @@
   .thumb .lockrow{z-index:2}
   .vid.locked{cursor:pointer;transition:border-color .15s,transform .1s}
   .vid.locked:hover{border-color:var(--brass-line);transform:translateY(-2px)}
+
+  /* ---------- FAB Instagram ---------- */
+  .ig-fab{position:fixed;right:84px;bottom:18px;z-index:100;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;box-shadow:0 8px 24px #0008;transition:transform .12s;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
+  .ig-fab:hover{transform:scale(1.05)}
+  .ig-fab svg{width:28px;height:28px;fill:#fff}
+  @media(max-width:420px){.ig-fab{right:82px;bottom:18px}}
 </style>
 </head>
 <body>
@@ -477,6 +483,8 @@
   </div>
 </footer>
 
+<a class="ig-fab" href="https://www.instagram.com/trader_elite_oficial/" target="_blank" rel="noopener" aria-label="Instagram @trader_elite_oficial"><svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm0 2h10c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3zm10.5 1.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></a>
+
 <div class="wa-fab">
   <div class="wa-panel" hidden>
     <div class="wa-head">Suporte do evento</div>
@@ -516,6 +524,7 @@
     document.addEventListener('click',function(e){if(!e.target.closest('.wa-fab')){waP.setAttribute('hidden','');waT.setAttribute('aria-expanded','false');}});
     document.querySelectorAll('.wa-item').forEach(function(a){a.addEventListener('click',function(){track('whatsapp_click',{});});});
   }
+  var ig=document.querySelector(".ig-fab"); if(ig)ig.addEventListener("click",function(){track("instagram_click",{});});
   var bm=document.getElementById('btn-membros');
   if(bm){bm.addEventListener('click',function(){track('members_click',{});});}
 
